@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "@radix-ui/themes/styles.css";
 import {
   BrowserRouter as Router,
   Route,
@@ -6,8 +7,14 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { FrappeProvider, useFrappeAuth } from "frappe-react-sdk";
-import LoginForm from "./components/LoginForm";
-import MainLayout from "./components/MainLayout";
+import "@radix-ui/themes/styles.css";
+import Login from "./pages/auth/login";
+import Quotes from "./pages/quotes";
+import Items from "./pages/items";
+import Customers from "./pages/customers";
+import { Theme } from "@radix-ui/themes";
+import CreateItem from "./pages/items/create";
+import ItemEdit from "./pages/items/edit";
 
 const App: React.FC = () => {
   const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -24,7 +31,7 @@ const App: React.FC = () => {
           // If user is logged in, ensure they're on /app
           const currentPath = window.location.pathname;
           if (currentPath === "/login" || currentPath === "/") {
-            navigate("/app"); // Redirect to /app if authenticated
+            navigate("/items"); // Redirect to /app if authenticated
           }
         }
       }
@@ -39,20 +46,25 @@ const App: React.FC = () => {
   };
 
   return (
-    <FrappeProvider
-      url={import.meta.env.VITE_FRAPPE_URL as string}
-      enableSocket={false}
-    >
-      <Router>
-        <AuthWrapper>
-          <Routes>
-            <Route path='/' element={<LoginForm />} />
-            <Route path='/app/*' element={<MainLayout />} />
-            <Route path='/login' element={<LoginForm />} />
-          </Routes>
-        </AuthWrapper>
-      </Router>
-    </FrappeProvider>
+    <Theme appearance='light' accentColor='iris' panelBackground='translucent'>
+      <FrappeProvider
+        url={import.meta.env.VITE_FRAPPE_URL as string}
+        enableSocket={false}
+      >
+        <Router>
+          <AuthWrapper>
+            <Routes>
+              <Route path='/login' element={<Login />} />
+              <Route path='/quotes' element={<Quotes />} />
+              <Route path='/items' element={<Items />} />
+              <Route path='/item/create/:id' element={<CreateItem />} />
+              <Route path='/item/edit/:id' element={<ItemEdit />} />
+              <Route path='/customers' element={<Customers />} />
+            </Routes>
+          </AuthWrapper>
+        </Router>
+      </FrappeProvider>
+    </Theme>
   );
 };
 
