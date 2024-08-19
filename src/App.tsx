@@ -39,13 +39,16 @@ const App: React.FC = () => {
   };
 
   return (
-    <FrappeProvider url={import.meta.env.VITE_FRAPPE_URL as string}>
+    <FrappeProvider
+      url={import.meta.env.VITE_FRAPPE_URL as string}
+      enableSocket={false}
+    >
       <Router>
         <AuthWrapper>
           <Routes>
-            <Route path="/" element={<LoginForm />} />
-            <Route path="/app/*" element={<MainLayout />} />
-            <Route path="/login" element={<LoginForm />} />
+            <Route path='/' element={<LoginForm />} />
+            <Route path='/app/*' element={<MainLayout />} />
+            <Route path='/login' element={<LoginForm />} />
           </Routes>
         </AuthWrapper>
       </Router>
