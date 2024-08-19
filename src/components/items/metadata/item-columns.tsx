@@ -15,7 +15,7 @@ export const columns = [
         />
       </div>
     ),
-    cell: ({ row }) => (
+    cell: ({ row }: any) => (
       <div className='flex items-center justify-center'>
         <Checkbox
           checked={row.getIsSelected()}
@@ -28,39 +28,39 @@ export const columns = [
   {
     accessorKey: "No",
     header: "No.",
-    cell: ({ row }) => <div className='capitalize'>{row.index + 1}</div>,
+    cell: ({ row }: any) => <div className='capitalize'>{row.index + 1}</div>,
   },
   {
     accessorKey: "item_code",
     header: "Item Code",
-    cell: ({ row }) => <div>{row.getValue("item_code")}</div>,
+    cell: ({ row }: any) => <div>{row.getValue("item_code")}</div>,
   },
   {
     accessorKey: "item_name",
     header: "Item Name",
-    cell: ({ row }) => <div>{row.getValue("item_name")}</div>,
+    cell: ({ row }: any) => <div>{row.getValue("item_name")}</div>,
   },
   {
     accessorKey: "description",
     header: "Description",
-    cell: ({ row }) => <div>{row.getValue("description")}</div>,
+    cell: ({ row }: any) => <div>{row.getValue("description")}</div>,
   },
   {
     accessorKey: "stock_uom",
     header: "Unit of Measurement",
-    cell: ({ row }) => <div>{row.getValue("stock_uom")}</div>,
+    cell: ({ row }: any) => <div>{row.getValue("stock_uom")}</div>,
   },
   {
     accessorKey: "valuation_rate",
     header: "Standard Valuation Rate",
-    cell: ({ row }) => (
+    cell: ({ row }: any) => (
       <div className='capitalize'>{row.getValue("valuation_rate")}</div>
     ),
   },
   {
     id: "delete",
     enableHiding: false,
-    cell: ({ row }) => {
+    cell: ({ row }: any) => {
       const { deleteDoc } = useFrappeDeleteDoc();
       return (
         <div
@@ -77,7 +77,7 @@ export const columns = [
   {
     id: "edit",
     enableHiding: false,
-    cell: ({ row }) => {
+    cell: ({ row }: any) => {
       const navigation = useNavigate();
 
       return (

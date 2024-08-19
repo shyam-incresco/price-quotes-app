@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const ItemList: React.FC = () => {
   const navigation = useNavigate();
-  const { data, error, isValidating, mutate } = useFrappeGetDocList("Item", {
+  const { data, error, isValidating } = useFrappeGetDocList("Item", {
     fields: [
       "item_code",
       "item_name",

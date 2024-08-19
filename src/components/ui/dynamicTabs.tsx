@@ -7,8 +7,8 @@ import { useEffect, useRef } from "react";
 export const DynamicTabs = ({
   tabsData,
   handleDeleteData = () => {},
-  tabKey,
-}: {
+}: // tabKey,
+{
   tabsData: any;
   handleDeleteData?: any;
   tabKey: string;

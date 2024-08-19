@@ -8,7 +8,7 @@ import { Button } from "@camped-ui/button";
 const ItemCreate = () => {
   const form = useForm();
 
-  const { createDoc, loading, error, isCompleted } = useFrappeCreateDoc();
+  const { createDoc } = useFrappeCreateDoc();
 
   const handleCreate = async (data: any) => {
     const formattedData = { ...data, item_code: data?.name };
