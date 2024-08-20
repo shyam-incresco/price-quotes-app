@@ -1,10 +1,9 @@
-import React from "react";
 import { useFrappeGetDocList } from "frappe-react-sdk";
-import { columns } from "../items/metadata/item-columns";
+import { columns } from "./metadata/item-columns";
 import { DataTable } from "../ui/data-table/data-table";
 import { useNavigate } from "react-router-dom";
 
-const ItemList: React.FC = () => {
+const ItemListContainer = () => {
   const navigation = useNavigate();
   const { data, error, isValidating } = useFrappeGetDocList("Item", {
     fields: [
@@ -45,4 +44,4 @@ const ItemList: React.FC = () => {
   return null;
 };
 
-export default ItemList;
+export default ItemListContainer;

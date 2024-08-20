@@ -1,0 +1,51 @@
+export const metaData = [
+  {
+    label: "Company Name",
+    fieldName: "name",
+    inputType: "textInput",
+    rules: { required: true },
+    placeholder: "",
+  },
+  {
+    label: "Customer Type",
+    fieldName: "customer_type",
+    inputType: "textInput",
+    rules: { required: true },
+    placeholder: "",
+  },
+  {
+    label: "Customer Group",
+    fieldName: "customer_group",
+    inputType: "textInput",
+    rules: { required: true },
+    placeholder: "",
+  },
+  {
+    label: "Contact Name",
+    fieldName: "customer_primary_contact",
+    inputType: "textInput",
+    rules: { required: true },
+    placeholder: "",
+  },
+  {
+    label: "Contact number",
+    fieldName: "mobile_no",
+    inputType: "textInput",
+    rules: { required: true },
+    placeholder: "",
+  },
+  {
+    label: "Contact Email",
+    fieldName: "email_id",
+    inputType: "textInput",
+    rules: { required: true },
+    placeholder: "",
+  },
+  {
+    label: "Primary Address",
+    fieldName: "customer_primary_address",
+    inputType: "textInput",
+    rules: { required: true },
+    placeholder: "",
+  },
+];

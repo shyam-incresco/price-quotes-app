@@ -1,10 +1,10 @@
-import ItemList from "../../components/items/ItemList";
+import ItemListContainer from "../../components/items/ItemListContainer";
 import MainLayout from "../../components/MainLayout";
 
 const Items: React.FC = () => {
   return (
     <MainLayout>
-      <ItemList />
+      <ItemListContainer />
     </MainLayout>
   );
 };

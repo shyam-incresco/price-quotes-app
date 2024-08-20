@@ -21,6 +21,13 @@
   dependencies:
     "@radix-ui/react-avatar" "^1.0.1"
 
+"@camped-ui/avatar@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@camped-ui/avatar/-/avatar-2.1.0.tgz#39291193182ee552c5c97b38806032a6bc1ea296"
+  integrity sha512-Q313MZF6GSK3rGwtSE/CNRmBVWICVNyYr3EubPSf5J8cIsJzpat01x909lNvdVpmOIUdulDFnd4Zkgfd4jl2Lg==
+  dependencies:
+    "@radix-ui/react-avatar" "^1.0.1"
+
 "@camped-ui/button@^2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@camped-ui/button/-/button-2.1.1.tgz#18e3fd02ff7b596ad2c38cb08f90ba6111197304"
@@ -117,6 +124,14 @@
   integrity sha512-Wn4Pqv39QEMjqoq4eYQHjIsNwVmGesUKyY77pMeSfkxLO+vfIhP/4k7bxZlyqYsFbP+YlGtB2K8u8+kHRGJcCw==
   dependencies:
     "@radix-ui/react-scroll-area" "^1.0.2"
+
+"@camped-ui/navigation-menu@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@camped-ui/navigation-menu/-/navigation-menu-2.1.0.tgz#9391a03881dd304e7ad5dcd68107a23a3a5c2dda"
+  integrity sha512-LkzmXp+QplShX7u9U2FCA96ezDUmAKEAOMP29d3xZqJqHmwUyv7LOKXMvt0HmRz645Ysgmvgj93qyGNyhYSggg==
+  dependencies:
+    "@radix-ui/react-navigation-menu" "^1.1.1"
+    class-variance-authority "^0.4.0"
 
 "@camped-ui/select@^2.1.0":
   version "2.1.0"
@@ -476,6 +491,7 @@
     "@radix-ui/react-primitive" "2.0.0"
 
 "@radix-ui/react-avatar@1.1.0", "@radix-ui/react-avatar@^1.0.1":
+"@radix-ui/react-avatar@1.1.0", "@radix-ui/react-avatar@^1.0.1":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-avatar/-/react-avatar-1.1.0.tgz#457c81334c93f4608df15f081e7baa286558d6a2"
   integrity sha512-Q/PbuSMk/vyAd/UoIShVGZ7StHHeRFYU7wXmi5GV+8cLXflZAEpHL/F697H1klrzxKXNtZ97vWiC0q3RKUH8UA==
@@ -742,6 +758,7 @@
     aria-hidden "^1.1.1"
     react-remove-scroll "2.5.7"
 
+"@radix-ui/react-navigation-menu@1.2.0", "@radix-ui/react-navigation-menu@^1.1.1":
 "@radix-ui/react-navigation-menu@1.2.0", "@radix-ui/react-navigation-menu@^1.1.1":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-navigation-menu/-/react-navigation-menu-1.2.0.tgz#884c9b9fd141cc5db257bd3f6bf3b84e349c6617"
@@ -2357,6 +2374,11 @@ lru-cache@^10.2.0:
   version "10.4.3"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.4.3.tgz#410fc8a17b70e598013df257c2446b7f3383f119"
   integrity sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==
+
+lucide-react@^0.428.0:
+  version "0.428.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.428.0.tgz#dfd96d682c74f78c2961040036d8c1265ccce039"
+  integrity sha512-rGrzslfEcgqwh+TLBC5qJ8wvVIXhLvAIXVFKNHndYyb1utSxxn9rXOC+1CNJLi6yNOooyPqIs6+3YCp6uSiEvg==
 
 lucide-react@^0.428.0:
   version "0.428.0"

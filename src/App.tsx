@@ -10,11 +10,13 @@ import { FrappeProvider, useFrappeAuth } from "frappe-react-sdk";
 import "@radix-ui/themes/styles.css";
 import Login from "./pages/auth/login";
 import Quotes from "./pages/quotes";
-import Items from "./pages/items";
 import Customers from "./pages/customers";
-import { Theme } from "@radix-ui/themes";
 import CreateItem from "./pages/items/create";
-import ItemEdit from "./pages/items/edit";
+import { Theme } from "@radix-ui/themes";
+import EditItem from "./pages/items/edit";
+import CreateCustomer from "./pages/customers/create";
+import EditCustomer from "./pages/customers/edit";
+import Items from "./pages/items";
 
 const App: React.FC = () => {
   const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -58,8 +60,10 @@ const App: React.FC = () => {
               <Route path='/quotes' element={<Quotes />} />
               <Route path='/items' element={<Items />} />
               <Route path='/item/create/:id' element={<CreateItem />} />
-              <Route path='/item/edit/:id' element={<ItemEdit />} />
+              <Route path='/item/edit/:id' element={<EditItem />} />
               <Route path='/customers' element={<Customers />} />
+              <Route path='/customer/create/:id' element={<CreateCustomer />} />
+              <Route path='/customer/edit/:id' element={<EditCustomer />} />
             </Routes>
           </AuthWrapper>
         </Router>

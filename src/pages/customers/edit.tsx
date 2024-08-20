@@ -1,11 +1,11 @@
-import EditItemContainer from "../../components/items/EditItemContainer";
+import EditCustomerContainer from "../../components/customer/EditCustomerContainer";
 import MainLayout from "../../components/MainLayout";
 
 const EditItem = () => {
   const pathName = window.location.pathname;
   return (
     <MainLayout>
-      <EditItemContainer itemName={pathName?.split("/").pop() || ""} />
+      <EditCustomerContainer itemName={pathName?.split("/").pop() || ""} />
     </MainLayout>
   );
 };

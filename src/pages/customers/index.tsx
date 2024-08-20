@@ -1,11 +1,12 @@
+import CustomerListContainer from "../../components/customer/CustomerListContainer";
 import MainLayout from "../../components/MainLayout";
 
-const Customers = () => {
+const Items: React.FC = () => {
   return (
     <MainLayout>
-      <div>Customers</div>
+      <CustomerListContainer />
     </MainLayout>
   );
 };
 
-export default Customers;
+export default Items;

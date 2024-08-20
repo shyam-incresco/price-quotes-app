@@ -1,10 +1,10 @@
-import CreateItemContainer from "../../components/items/CreateItemContainer";
+import CreateCustomerContainer from "../../components/customer/CreateCustomerContainer";
 import MainLayout from "../../components/MainLayout";
 
 const CreateItem = () => {
   return (
     <MainLayout>
-      <CreateItemContainer />
+      <CreateCustomerContainer />
     </MainLayout>
   );
 };
