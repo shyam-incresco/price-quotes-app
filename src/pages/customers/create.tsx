@@ -1,7 +1,7 @@
 import CreateCustomerContainer from "../../components/customer/CreateCustomerContainer";
 import MainLayout from "../../components/MainLayout";
 
-const CreateItem = () => {
+const CreateCustomer = () => {
   return (
     <MainLayout>
       <CreateCustomerContainer />
@@ -9,4 +9,4 @@ const CreateItem = () => {
   );
 };
 
-export default CreateItem;
+export default CreateCustomer;

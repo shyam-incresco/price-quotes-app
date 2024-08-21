@@ -12,11 +12,14 @@ import Login from "./pages/auth/login";
 import Quotes from "./pages/quotes";
 import Customers from "./pages/customers";
 import CreateItem from "./pages/items/create";
-import { Theme } from "@radix-ui/themes";
 import EditItem from "./pages/items/edit";
+import { Theme } from "@radix-ui/themes";
 import CreateCustomer from "./pages/customers/create";
 import EditCustomer from "./pages/customers/edit";
 import Items from "./pages/items";
+import { Toaster } from "react-hot-toast";
+import ItemGroup from "./pages/item-group";
+import CreateItemGroup from "./pages/item-group/create";
 
 const App: React.FC = () => {
   const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -44,7 +47,12 @@ const App: React.FC = () => {
       return <div>Loading...</div>; // Display loading state while determining auth status
     }
 
-    return <>{children}</>;
+    return (
+      <>
+        {children}
+        <Toaster />
+      </>
+    );
   };
 
   return (
@@ -59,11 +67,22 @@ const App: React.FC = () => {
               <Route path='/login' element={<Login />} />
               <Route path='/quotes' element={<Quotes />} />
               <Route path='/items' element={<Items />} />
-              <Route path='/item/create/:id' element={<CreateItem />} />
-              <Route path='/item/edit/:id' element={<EditItem />} />
+              <Route path='/item/create/:createId' element={<CreateItem />} />
+              <Route path='/item/edit/:itemId' element={<EditItem />} />
+              <Route path='/item-group' element={<ItemGroup />} />
+              <Route
+                path='/item-group/create/:createId'
+                element={<CreateItemGroup />}
+              />
               <Route path='/customers' element={<Customers />} />
-              <Route path='/customer/create/:id' element={<CreateCustomer />} />
-              <Route path='/customer/edit/:id' element={<EditCustomer />} />
+              <Route
+                path='/customer/create/:createId'
+                element={<CreateCustomer />}
+              />
+              <Route
+                path='/customer/edit/:customerId'
+                element={<EditCustomer />}
+              />
             </Routes>
           </AuthWrapper>
         </Router>

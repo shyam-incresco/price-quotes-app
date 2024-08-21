@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@camped-ui/avatar": "^2.1.0",
-    "@camped-ui/navigation-menu": "^2.1.0",
     "@camped-ui/button": "^2.1.1",
     "@camped-ui/calendar": "^2.1.2",
     "@camped-ui/card": "^2.1.0",
@@ -21,6 +20,7 @@
     "@camped-ui/input": "^2.1.0",
     "@camped-ui/label": "^2.1.0",
     "@camped-ui/lib": "^2.0.2",
+    "@camped-ui/navigation-menu": "^2.1.0",
     "@camped-ui/popover": "^2.1.0",
     "@camped-ui/select": "^2.1.0",
     "@camped-ui/skeleton": "^2.1.0",
@@ -33,10 +33,13 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.2",
+    "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.26.1",
     "swr": "^2.2.5",
     "tailwindcss": "^3.4.10",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "uuid": "^10.0.0",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

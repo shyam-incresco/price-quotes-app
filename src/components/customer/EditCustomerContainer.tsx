@@ -62,6 +62,7 @@ const EditCustomerContainer = ({ itemName }: { itemName: string }) => {
                   control={form.control}
                   watch={form.watch}
                   key={item?.fieldName}
+                  error={!!form.formState.errors?.[item?.fieldName]}
                 />
               );
             })}

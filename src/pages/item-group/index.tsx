@@ -1,17 +1,19 @@
 import { useEffect } from "react";
-import ItemListContainer from "../../components/items/ItemListContainer";
+import ItemGroupListContainer from "../../components/item-group/ItemGroupListContainer";
 import MainLayout from "../../components/MainLayout";
 import {
   useActiveTabDetails,
   useCreateItems,
-  useDynamicItemsTabsStore,
+  useDynamicItemGroupTabsStore,
 } from "../../store";
 import { useNavigate } from "react-router-dom";
 
-const Items = () => {
-  const createTabData = useDynamicItemsTabsStore((state: any) => state.items);
+const ItemGroup = () => {
+  const createTabData = useDynamicItemGroupTabsStore(
+    (state: any) => state.items
+  );
   const activeTabs: any = useActiveTabDetails((state) => state);
-  const deleteTabData = useDynamicItemsTabsStore(
+  const deleteTabData = useDynamicItemGroupTabsStore(
     (state: any) => state.deleteItem
   );
   const deleteItem = useCreateItems((state: any) => state.deleteItem);
@@ -19,15 +21,15 @@ const Items = () => {
   const navigation = useNavigate();
 
   useEffect(() => {
-    if (activeTabs.tabs?.items !== "/items" && activeTabs.tabs?.items) {
-      navigation(activeTabs.tabs?.items);
+    if (activeTabs.tabs?.itemGroup !== "/item-group" && activeTabs.tabs?.itemGroup) {
+      navigation(activeTabs.tabs?.itemGroup);
     }
   }, []);
 
   return (
     <MainLayout
       tabsData={createTabData}
-      tabKey='items'
+      tabKey='itemGroup'
       handleDeleteData={(tabIndex: number, createTabIndex?: number) => {
         const id = createTabData[tabIndex]?.path.includes("/create")
           ? createTabData[tabIndex]?.path?.split("/").pop()
@@ -38,9 +40,9 @@ const Items = () => {
         }
       }}
     >
-      <ItemListContainer />
+      <ItemGroupListContainer />
     </MainLayout>
   );
 };
 
-export default Items;
+export default ItemGroup;

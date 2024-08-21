@@ -31,39 +31,51 @@ export const columns = [
     cell: ({ row }) => <div className='capitalize'>{row.index + 1}</div>,
   },
   {
-    accessorKey: 'name',
-    header: 'Company Name',
+    accessorKey: "name",
+    header: "Company Name",
     cell: ({ row }) => {
-      return <div className="capitalize">{row.getValue('name') || ' - '}</div>;
-    }
+      return <div className='capitalize'>{row.getValue("name") || " - "}</div>;
+    },
   },
   {
-    accessorKey: 'customer_group',
-    header: 'Customer Group',
-    cell: ({ row }) => <div className="capitalize">{row.getValue('customer_group') || ' - '}</div>
-  },
-  {
-    accessorKey: 'customer_type',
-    header: 'Customer Type',
+    accessorKey: "customer_group",
+    header: "Customer Group",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue('customer_type') || ' - '}</div>
-    )
+      <div className='capitalize'>
+        {row.getValue("customer_group") || " - "}
+      </div>
+    ),
   },
   {
-    accessorKey: 'customer_primary_contact',
-    header: 'Contact Name',
-    cell: ({ row }) => <div className="capitalize">{row.getValue('customer_primary_contact') || ' - '}</div>
+    accessorKey: "customer_type",
+    header: "Customer Type",
+    cell: ({ row }) => (
+      <div className='capitalize'>{row.getValue("customer_type") || " - "}</div>
+    ),
+  },
+  {
+    accessorKey: "customer_primary_contact",
+    header: "Contact Name",
+    cell: ({ row }) => (
+      <div className='capitalize'>
+        {row.getValue("customer_primary_contact") || " - "}
+      </div>
+    ),
   },
 
   {
-    accessorKey: 'mobile_no',
-    header: 'Contact Number',
-    cell: ({ row }) => <div className="capitalize">{row.getValue('mobile_no') || ' - '}</div>
+    accessorKey: "mobile_no",
+    header: "Contact Number",
+    cell: ({ row }) => (
+      <div className='capitalize'>{row.getValue("mobile_no") || " - "}</div>
+    ),
   },
   {
-    accessorKey: 'email_id',
-    header: 'Email',
-    cell: ({ row }) => <div className="camelcase">{row.getValue('email_id') || ' - '}</div>
+    accessorKey: "email_id",
+    header: "Email",
+    cell: ({ row }) => (
+      <div className='camelcase'>{row.getValue("email_id") || " - "}</div>
+    ),
   },
 
   {

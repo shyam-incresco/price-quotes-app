@@ -3,14 +3,17 @@ import {
   useFrappeGetDocCount,
   useFrappeGetDocList,
 } from "frappe-react-sdk";
-import { columns } from "./metadata/item-columns";
+import { columns } from "./metadata/item-group-columns";
 import { DataTable } from "../ui/data-table/data-table";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { handleCreateItems, handleEditItems } from "../../utils/items";
-import { useDynamicItemsTabsStore } from "../../store";
+import {
+  handleCreateItemGroup,
+  handleEditItemGroup,
+} from "../../utils/item-group";
+import { useDynamicItemGroupTabsStore } from "../../store";
 
-const ItemListContainer = () => {
-  const createTabData = useDynamicItemsTabsStore((state: any) => state);
+const ItemGroupListContainer = () => {
+  const createTabData = useDynamicItemGroupTabsStore((state: any) => state);
   const [searchParams] = useSearchParams();
   const navigation = useNavigate();
 
@@ -18,28 +21,20 @@ const ItemListContainer = () => {
   const pageSize = Number(searchParams.get("pageSize")) || 10;
 
   const { data, isValidating, isLoading, mutate } = useFrappeGetDocList(
-    "Item",
+    "Item Group",
     {
-      fields: [
-        "name",
-        "item_code",
-        "item_name",
-        "item_group",
-        "description",
-        "stock_uom",
-        "valuation_rate",
-      ],
+      fields: ["name"],
       limit: pageSize * page,
       limit_start: 0,
     }
   );
 
   const { data: ItemCount, mutate: mutateCount }: any =
-    useFrappeGetDocCount("Item");
+    useFrappeGetDocCount("Item Group");
   const { deleteDoc } = useFrappeDeleteDoc();
 
   const handleDelete = async (row: any) => {
-    const response: any = await deleteDoc("Item", row.original.name);
+    const response: any = await deleteDoc("Item Group", row.original.name);
     if (response.data === "ok") {
       mutate();
       mutateCount();
@@ -47,7 +42,7 @@ const ItemListContainer = () => {
   };
 
   const handleEditIem = async (row: any) => {
-    handleEditItems({
+    handleEditItemGroup({
       id: row.original.name,
       viewItems: createTabData,
       navigation,
@@ -63,10 +58,10 @@ const ItemListContainer = () => {
         <DataTable
           data={data}
           columns={columns}
-          title='List of Items'
-          ctaLabel='Add new item'
+          title='List of Item Group'
+          ctaLabel='Add new item group'
           handleCta={() => {
-            handleCreateItems({ tabData: createTabData, navigation });
+            handleCreateItemGroup({ tabData: createTabData, navigation });
           }}
           isLoading={isValidating || isLoading}
           totalItems={ItemCount}
@@ -82,4 +77,4 @@ const ItemListContainer = () => {
   return null;
 };
 
-export default ItemListContainer;
+export default ItemGroupListContainer;

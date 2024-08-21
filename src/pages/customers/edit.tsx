@@ -1,7 +1,7 @@
 import EditCustomerContainer from "../../components/customer/EditCustomerContainer";
 import MainLayout from "../../components/MainLayout";
 
-const EditItem = () => {
+const EditCustomer = () => {
   const pathName = window.location.pathname;
   return (
     <MainLayout>
@@ -10,4 +10,4 @@ const EditItem = () => {
   );
 };
 
-export default EditItem;
+export default EditCustomer;

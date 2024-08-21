@@ -1,5 +1,5 @@
 import { useFrappeAuth } from "frappe-react-sdk";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import profileIcon from "../assets/profile.png";
 import {
   DropdownMenu,
@@ -15,10 +15,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@camped-ui/avatar";
 import { Icon } from "./icons";
 import { DynamicTabs } from "./ui/dynamicTabs";
 
-const MainLayout = ({ children }: any) => {
+const MainLayout = ({
+  children,
+  tabsData,
+  tabKey,
+  handleDeleteData = () => {},
+}: any) => {
   const { logout } = useFrappeAuth();
   const navigate = useNavigate();
-  const currentRoute = window.location.pathname;
+  const currentLocation = useLocation();
 
   const handleLogout = async () => {
     try {
@@ -64,11 +69,15 @@ const MainLayout = ({ children }: any) => {
       pathName: "/items",
       secondaryPathName: "/item",
     },
+    {
+      title: "Item Group",
+      pathName: "/item-group"
+    },
   ];
 
   return (
-    <div className='bg-background overflow-hidden h-screen w-full'>
-      {currentRoute !== "/login" && (
+    <div className='bg-background h-screen w-full'>
+      {currentLocation?.pathname !== "/login" && (
         <div className='fixed left-0 right-0 bg-background'>
           <div className='flex items-center justify-between border-b px-7 py-1'>
             <div className='flex items-center'>
@@ -107,8 +116,9 @@ const MainLayout = ({ children }: any) => {
                   <NavigationMenuItem
                     key={index}
                     className={`p-4 ${
-                      currentRoute.includes(item?.pathName) ||
-                      currentRoute.includes(item?.secondaryPathName)
+                      currentLocation?.pathname === item?.pathName ||
+                      currentLocation?.pathname === item?.secondaryPathName
+                      
                         ? "border-b-2 border-primary text-primary"
                         : "text-secondary-foreground"
                     }`}
@@ -120,23 +130,26 @@ const MainLayout = ({ children }: any) => {
             </NavigationMenuList>
           </NavigationMenu>
           <DynamicTabs
-            tabsData={{
-              items: [
+            handleDeleteData={handleDeleteData}
+            tabsData={
+              tabsData || [
                 {
                   title: "Items",
-                  path: currentRoute,
+                  path: currentLocation?.pathname,
                   isClosable: false,
                 },
-              ],
-            }}
-            tabKey='customers'
+              ]
+            }
+            tabKey={tabKey || "customers"}
           />
         </div>
       )}
       <div
         className={`${
-          currentRoute === "/login" ? "" : "pt-[172px] bg-secondary"
-        } flex h-screen px-4 w-full`}
+          currentLocation?.pathname === "/login"
+            ? ""
+            : "pt-[172px] bg-secondary"
+        } flex h-screen px-4 w-full hide-scrollbar`}
       >
         {children}
       </div>

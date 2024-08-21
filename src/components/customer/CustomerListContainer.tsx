@@ -1,14 +1,25 @@
-import { useFrappeGetDocList } from "frappe-react-sdk";
+import { useFrappeGetDocCount, useFrappeGetDocList } from "frappe-react-sdk";
 import { columns } from "./metadata/customer-columns";
 import { DataTable } from "../ui/data-table/data-table";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const CustomerListContainer = () => {
   const navigation = useNavigate();
-  const { data, error, isValidating } = useFrappeGetDocList("Customer", {
-    fields: ["*"],
-    limit: 10,
-  });
+  const [searchParams] = useSearchParams();
+
+  const page = Number(searchParams.get("page")) || 1;
+  const pageSize = Number(searchParams.get("pageSize")) || 10;
+
+  const { data, error, isValidating, isLoading } = useFrappeGetDocList(
+    "Customer",
+    {
+      fields: ["*"],
+      limit: pageSize * page,
+      limit_start: 0,
+    }
+  );
+
+  const { data: CustomerCount }: any = useFrappeGetDocCount("Customer");
 
   if (isValidating) {
     return <div>Loading customers...</div>;
@@ -27,9 +38,12 @@ const CustomerListContainer = () => {
           title='List of Customers'
           ctaLabel='Add new customer'
           handleCta={() => {
-            navigation("/customer/create/1");
+            // handleCreateItems({ tabData: createTabData, navigation });
           }}
-          isLoading={false}
+          isLoading={isValidating || isLoading}
+          totalItems={CustomerCount}
+          pageSize={pageSize || 10}
+          page={page}
         />
       </div>
     );

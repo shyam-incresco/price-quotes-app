@@ -1,5 +1,6 @@
 import { Checkbox } from "@camped-ui/checkbox";
 import { Icon } from "../../icons";
+import { useFrappeDeleteDoc } from "frappe-react-sdk";
 
 export const columns = [
   {
@@ -29,48 +30,22 @@ export const columns = [
     cell: ({ row }: any) => <div className='capitalize'>{row.index + 1}</div>,
   },
   {
-    accessorKey: "item_code",
-    header: "Item Code",
-    cell: ({ row }: any) => <div>{row.getValue("item_code")}</div>,
-  },
-  {
-    accessorKey: "item_name",
-    header: "Item Name",
-    cell: ({ row }: any) => <div>{row.getValue("item_name")}</div>,
-  },
-  {
-    accessorKey: "item_group",
-    header: "Item Group",
-    cell: ({ row }: any) => <div>{row.getValue("item_group")}</div>,
-  },
-  {
-    accessorKey: "item_group",
-    header: "Item Group",
-    cell: ({ row }: any) => <div>{row.getValue("item_group")}</div>,
-  },
-  {
-    accessorKey: "description",
-    header: "Description",
-    cell: ({ row }: any) => <div>{row.getValue("description")}</div>,
-  },
-  {
-    accessorKey: "stock_uom",
-    header: "Unit of Measurement",
-    cell: ({ row }: any) => <div>{row.getValue("stock_uom")}</div>,
-  },
-  {
-    accessorKey: "valuation_rate",
-    header: "Standard Valuation Rate",
-    cell: ({ row }: any) => (
-      <div className='capitalize'>{row.getValue("valuation_rate")}</div>
-    ),
+    accessorKey: "name",
+    header: "Item Group Name",
+    cell: ({ row }: any) => <div>{row.getValue("name")}</div>,
   },
   {
     id: "delete",
     enableHiding: false,
-    cell: () => {
+    cell: ({ row }: any) => {
+      const { deleteDoc } = useFrappeDeleteDoc();
       return (
-        <div className='cursor-pointer'>
+        <div
+          className='cursor-pointer'
+          onClick={async () => {
+            await deleteDoc("Item Group", row.original.name);
+          }}
+        >
           <Icon.trash className='h-4 w-4 text-destructive' />
         </div>
       );

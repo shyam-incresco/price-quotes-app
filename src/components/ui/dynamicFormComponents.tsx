@@ -28,38 +28,44 @@ const DynamicFormComponents = ({
   control,
   watch,
   disabledDate,
+  error,
 }: {
   schemaData: any;
   handleOnBlur: any;
   control: any;
   watch: any;
   disabledDate?: any;
+  error: boolean;
 }) => {
   if (schemaData?.inputType === "textInput") {
     return (
       <FormField
         control={control}
         name={schemaData?.fieldName}
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>{schemaData?.label}</FormLabel>
-            <FormControl>
-              <Input
-                placeholder={schemaData?.placeholder}
-                {...field}
-                onChange={field.onChange}
-                className='border-border'
-                onBlur={(blurData) =>
-                  handleOnBlur({
-                    type: schemaData?.fieldName,
-                    data: blurData.target.value,
-                  })
-                }
-              />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
+        render={({ field }) => {
+          return (
+            <FormItem>
+              <FormLabel>{schemaData?.label}</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder={schemaData?.placeholder}
+                  {...field}
+                  onChange={field.onChange}
+                  className={`${
+                    error ? "border-destructive" : "border-border"
+                  }`}
+                  onBlur={(blurData) =>
+                    handleOnBlur({
+                      type: schemaData?.fieldName,
+                      data: blurData.target.value,
+                    })
+                  }
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          );
+        }}
         rules={schemaData?.rules || {}}
       />
     );
@@ -73,43 +79,47 @@ const DynamicFormComponents = ({
       <FormField
         control={control}
         name={schemaData?.fieldName}
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>{schemaData?.label}</FormLabel>
-            <FormControl>
-              <div className='relative'>
-                <Input
-                  type={showPassword ? "text" : "password"}
-                  placeholder={schemaData?.placeholder}
-                  {...field}
-                  onChange={field.onChange}
-                  className='border-border'
-                  onBlur={(blurData) =>
-                    handleOnBlur({
-                      type: schemaData?.fieldName,
-                      data: blurData.target.value,
-                    })
-                  }
-                />
-                <Button
-                  type='button'
-                  variant='ghost'
-                  size='sm'
-                  className='absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent'
-                  onClick={() => setShowPassword((prev) => !prev)}
-                  disabled={disabled}
-                >
-                  {showPassword && !disabled ? (
-                    <Icon.Eye className='h-4 w-4' aria-hidden='true' />
-                  ) : (
-                    <Icon.EyeOff className='h-4 w-4' aria-hidden='true' />
-                  )}
-                </Button>
-              </div>
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
+        render={({ field }) => {
+          return (
+            <FormItem>
+              <FormLabel>{schemaData?.label}</FormLabel>
+              <FormControl>
+                <div className='relative'>
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    placeholder={schemaData?.placeholder}
+                    {...field}
+                    onChange={field.onChange}
+                    className={`${
+                      error ? "border-destructive" : "border-border"
+                    }`}
+                    onBlur={(blurData) =>
+                      handleOnBlur({
+                        type: schemaData?.fieldName,
+                        data: blurData.target.value,
+                      })
+                    }
+                  />
+                  <Button
+                    type='button'
+                    variant='ghost'
+                    size='sm'
+                    className='absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent'
+                    onClick={() => setShowPassword((prev) => !prev)}
+                    disabled={disabled}
+                  >
+                    {showPassword && !disabled ? (
+                      <Icon.Eye className='h-4 w-4' aria-hidden='true' />
+                    ) : (
+                      <Icon.EyeOff className='h-4 w-4' aria-hidden='true' />
+                    )}
+                  </Button>
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          );
+        }}
         rules={schemaData?.rules || {}}
       />
     );
@@ -119,6 +129,7 @@ const DynamicFormComponents = ({
       <FormField
         control={control}
         name={schemaData?.fieldName}
+        rules={schemaData?.rules || {}}
         render={({ field }) => (
           <FormItem className='flex flex-col mt-2'>
             <FormLabel>{schemaData?.label}</FormLabel>
@@ -172,30 +183,37 @@ const DynamicFormComponents = ({
       <FormField
         control={control}
         name={schemaData?.fieldName}
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>{schemaData?.label}</FormLabel>
-            <Select
-              onValueChange={(value) => {
-                field.onChange(value);
-                handleOnBlur({ type: schemaData?.fieldName, data: value });
-              }}
-              defaultValue={schemaData?.items?.[0]?.value}
-            >
-              <FormControl>
-                <SelectTrigger className='border-border'>
-                  <SelectValue placeholder={schemaData?.placeholder} />
-                </SelectTrigger>
-              </FormControl>
-              <SelectContent>
-                {schemaData?.items?.map((item: any) => (
-                  <SelectItem value={item?.value}>{item?.label}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <FormMessage />
-          </FormItem>
-        )}
+        rules={schemaData?.rules || {}}
+        render={({ field }) => {
+          return (
+            <FormItem>
+              <FormLabel>{schemaData?.label}</FormLabel>
+              <Select
+                value={field.value}
+                onValueChange={(value) => {
+                  field.onChange(value);
+                  handleOnBlur({ type: schemaData?.fieldName, data: value });
+                }}
+              >
+                <FormControl>
+                  <SelectTrigger
+                    className={`${
+                      error ? "border-destructive" : "border-border"
+                    }`}
+                  >
+                    <SelectValue placeholder={schemaData?.placeholder} />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {schemaData?.items?.map((item: any) => (
+                    <SelectItem value={item?.value}>{item?.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          );
+        }}
       />
     );
   }
