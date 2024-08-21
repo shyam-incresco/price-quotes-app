@@ -44,11 +44,6 @@ export const columns = [
     cell: ({ row }: any) => <div>{row.getValue("item_group")}</div>,
   },
   {
-    accessorKey: "item_group",
-    header: "Item Group",
-    cell: ({ row }: any) => <div>{row.getValue("item_group")}</div>,
-  },
-  {
     accessorKey: "description",
     header: "Description",
     cell: ({ row }: any) => <div>{row.getValue("description")}</div>,
